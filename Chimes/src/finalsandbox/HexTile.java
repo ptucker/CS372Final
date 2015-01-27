@@ -20,7 +20,7 @@ import java.awt.Point;
  */
 public class HexTile {
     //The number of corners the tile has.
-    private static int CORNERS = 6;
+    private final static int CORNERS = 6;
     //The tile's gridspace coordinates.
     private int[] gridCoords;
     //The grid coordinates of all potential neighbors of this tile.
@@ -40,7 +40,7 @@ public class HexTile {
     //The color that will be used to fill the tile when it is drawn or changed
     private Color fillColor;
     //The polygon used by each tile to determine insideness
-    private Polygon poly;  
+    private final Polygon poly;  
     //The filepath for the sound played when this tile is clicked
     private String soundPath;
     
