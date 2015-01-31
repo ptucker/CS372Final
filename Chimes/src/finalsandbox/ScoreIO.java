@@ -20,11 +20,11 @@ public class ScoreIO {
     /**
      * Appends an integer score to a given file
      * @param destination The file the score is to be added to
-     * @param score The score value to be appended
+     * @param score The high score to be kept on file
      */
     public void writeScore (File destination, Integer score) {
         try {
-            BufferedWriter wrtr = new BufferedWriter (new FileWriter (destination,true));
+            BufferedWriter wrtr = new BufferedWriter (new FileWriter (destination, false));
             String line = score.toString();
             wrtr.write(line);
             wrtr.newLine();
@@ -40,17 +40,19 @@ public class ScoreIO {
      * found to an integer, then adding it to the ArrayList of scores to be 
      * used by the application
      * @param destination The file whose contents are to be read
-     * @param scores The ArrayList the score values are to be added to
+     * @param score The high score value to be used by the application
      */
-    public void readScores (File destination, ArrayList<Integer> scores) {
+    public int readScore (File destination) {
+        int score = 900;
+        
         try {
             BufferedReader rdr = new BufferedReader (new FileReader (destination));
             String line = "";
             
             while ((line = rdr.readLine()) != null) {
                 try {
-                    Integer score = Integer.parseInt(line);
-                    scores.add(score);
+                    Integer rdrVal = Integer.parseInt(line);
+                    score = rdrVal;
                 }
                 catch (NumberFormatException ex) {
                     Logger.getLogger(ScoreIO.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,5 +63,6 @@ public class ScoreIO {
         catch (IOException ex) {
             Logger.getLogger(ScoreIO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return score;
     }
 }

@@ -83,7 +83,8 @@ public class SandBox {
         scores = new ArrayList();
         screen = new JFrame();
         try {
-            scoreManager.readScores(scoreDB, scores);
+            bestScore = scoreManager.readScore(scoreDB);
+            scores.add(bestScore);
             calcBestScore();
         }
         catch (Exception ex) {
@@ -190,7 +191,7 @@ public class SandBox {
         scores.add(finalScore);
         calcBestScore();
         recordDisplay.setBestScore(bestScore);
-        scoreManager.writeScore(scoreDB, finalScore);
+        scoreManager.writeScore(scoreDB, bestScore);
         playerScore.resetCounter();
         grid = new HexGrid();
         gamePanel.repaint();
@@ -222,12 +223,15 @@ public class SandBox {
      * Determine which, of the player's previous scores, is the best
      */
     private void calcBestScore() {
-        int tempBest = 99999;
+        int tempBest = 900;
+        int currScore = 0;
         if (!scores.isEmpty()) {
             for (int i=0; i < scores.size(); i++) {
-                int currScore = scores.get(i);
-                if (currScore < tempBest)
-                    tempBest = currScore;
+                if (scores.get(i) != null) {
+                    currScore = scores.get(i);
+                    if (currScore < tempBest)
+                        tempBest = currScore;
+                }
             }
         }
         bestScore = tempBest;
