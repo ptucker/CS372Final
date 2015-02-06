@@ -18,6 +18,7 @@ import java.util.HashMap;
  * @author Scott Howland
  */
 public class HexGrid {
+    //PT -- it'd be helpful to have some commentary on what each of these numbers means
     //Stores the gridspace coordinates of every tile to be created
     private static final int[][] tileCoords = { {0,-1,1}, {0,-2,2}, {0,-3,3}, {0,-4,4}, {0,-5,5},
                                                     {1,-1,0}, {1,-2,1}, {1,-3,2}, {1,-4,3}, {1,-5,4},
